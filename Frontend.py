@@ -311,15 +311,10 @@ def load_announcer_calls() -> Optional[tuple]:
             elif file == "Bad":
                 bad_calls.append(filepath)
 
-<<<<<<< HEAD
-
         return good_calls, bad_calls
 
-# Testing Github
-=======
-        return good_calls, bad_calls
 
->>>>>>> cc4b40679fa9c62cdbcddcaee7fe23a3e06a4c86
+"bye"
 
 def play_announcer_sound(is_correct: bool) -> None:
     """Plays NBA announcer calls, based on whether the user was correct/wrong."""
