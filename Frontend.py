@@ -12,8 +12,6 @@ pygame.init()
 pygame.mixer.init()     # Lets us play music clips
 screen = pygame.display.set_mode((900, 500))
 
-# Testing Github
-
 # Fonts & Colours
 fonts = {'small_font': pygame.font.SysFont("comic sans", 24),
          'big_font': pygame.font.SysFont("comic sans", 32),
@@ -28,7 +26,7 @@ colours = {'WHITE': (255, 255, 255), 'GREY': (128, 128, 128), 'GREEN': (34, 139,
 
 # Game variables
 clock = pygame.time.Clock()
-player_points = 0
+player_points = 100
 music_on = True
 
 # Load background theme music
