@@ -12,6 +12,8 @@ pygame.init()
 pygame.mixer.init()     # Lets us play music clips
 screen = pygame.display.set_mode((900, 500))
 
+# Testing Github
+
 # Fonts & Colours
 fonts = {'small_font': pygame.font.SysFont("comic sans", 24),
          'big_font': pygame.font.SysFont("comic sans", 32),
