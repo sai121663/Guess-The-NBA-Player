@@ -532,7 +532,6 @@ end_program()
 
 # Instructions:
 # ------------------------------------
-# - Fix fetch_player() method to ensure that the music is muted when the user clicks on singing icon, and vice versa
 # - Create a CLUE button:
 #         - Either the player's NICKNAME (if it exists) or the year they RETIRED
 

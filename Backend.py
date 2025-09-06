@@ -230,15 +230,3 @@ def create_player_with_id(player_id: int) -> Optional[NBAPlayer]:
 
     return None
 
-
-    # INSTRUCTIONS:
-    # - Create separate methods to fetch CASUAL and DIEHARD players
-    # - To get casual players, find the league leaders in stats for each season since 2000 & randomize their order
-    # - https://chatgpt.com/c/689132db-d184-8009-abfc-fb09696c6cc8
-
-
-# ERROR:
-# - When running Frontend.py, there are cases where player.full_name is a player that doesn't appear in the all_players
-# list
-# INSTRUCTIONS:
-#
