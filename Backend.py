@@ -5,9 +5,8 @@ import os
 import random
 from typing import Optional
 from nba_api.stats.static import players
-from nba_api.stats.endpoints import playercareerstats
+from nba_api.stats.endpoints import playercareerstats, leagueleaders
 import json
-from nba_api.stats.endpoints import leagueleaders
 
 # Public variables
 # Generates a list[dict] of active and all players respectively
