@@ -12,7 +12,7 @@ from nba_api.stats.endpoints import leagueleaders
 # Public variables
 # Generates a list[dict] of active and all players respectively
 all_players = players.get_players()
-unvalid_ids = set()     # Set of player IDs that return an unvalid headhshot
+invalid_ids = set()     # Set of player IDs that return an invalid headshot
 used_players = set()    # Player IDs that have already been used
 
 # Loading the JSON files containing player data
@@ -111,7 +111,7 @@ def get_player(mode: str) -> NBAPlayer:
             random_player = random.choice(diehard_data)
 
         # Checking if the player was already USED or their headshot was INVALID
-        if random_player['id'] in unvalid_ids or random_player['id'] in used_players:
+        if random_player['id'] in invalid_ids or random_player['id'] in used_players:
             continue
 
         curr_player = NBAPlayer(random_player)
@@ -122,7 +122,7 @@ def get_player(mode: str) -> NBAPlayer:
             used_players.add(curr_player.id)
             return curr_player
         else:
-            unvalid_ids.add(curr_player.id)
+            invalid_ids.add(curr_player.id)
 
 
 def get_options(curr_name: str) -> list[str]:
