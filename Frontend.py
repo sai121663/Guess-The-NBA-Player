@@ -202,7 +202,7 @@ def display_nba_moment(images_list: list) -> None:
 
 
 def update_points(is_prev_correct: bool, difficulty: str, points: int) -> int:
-    """Update & display the user's point total after each question."""
+    """Update point total based on whether their answer was correct/wrong."""
 
     # convert_alpha() removes the white background & makes the image transparent
     up_arrow_img = pygame.image.load("green_arrow.png").convert_alpha()
@@ -229,8 +229,7 @@ def update_points(is_prev_correct: bool, difficulty: str, points: int) -> int:
         screen.blit(scaled_down_arrow, (50, 473))
 
     # Printing the user's point total
-    points_text = fonts["points_font"].render(f"Points:  {points}", True, colours['YELLOW'])
-    screen.blit(points_text, (50, 425))
+    display_points(points)
 
     # Displaying how much the user's point total went UP/DOWN by
     screen.blit(points_change_text, (75, 468))
@@ -238,6 +237,12 @@ def update_points(is_prev_correct: bool, difficulty: str, points: int) -> int:
     pygame.display.update()
 
     return points
+
+def display_points(total_points: int) -> None:
+    """Displaying the user's current point total."""
+
+    points_text = fonts["points_font"].render(f"Points:  {total_points}", True, colours['YELLOW'])
+    screen.blit(points_text, (50, 425))
 
 def fetch_next_player(difficulty: str, music_playing: bool) -> tuple:
     """Update the screen to show the next question. Return the player & the list of options."""
@@ -502,6 +507,7 @@ while running:
 
                     # Display the next question & options
                     player, choices, music_on = fetch_next_player(mode, music_on)
+                    display_points(player_points)
 
                     break
 
