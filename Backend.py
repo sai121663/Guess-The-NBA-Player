@@ -15,10 +15,10 @@ invalid_ids = set()     # Set of player IDs that return an invalid headshot
 used_players = set()    # Player IDs that have already been used
 
 # Loading the JSON files containing player data
-with open('casual_players.json', 'r') as file1:
+with open(os.path.join('Datasets', 'casual_players.json'), 'r') as file1:
     casual_data = json.load(file1)
 
-with open('diehard_players.json', 'r') as file2:
+with open(os.path.join('Datasets', 'diehard_players.json'), 'r') as file2:
     diehard_data = json.load(file2)
 
 
@@ -187,7 +187,7 @@ def update_casual_players() -> None:
 
         casual_player_pool.extend(top_scorers_by_dict)
 
-    with open("casual_players.json", "w") as file:
+    with open(os.path.join('Datasets', 'casual_players.json'), "w") as file:
         json.dump(casual_player_pool, file)
 
 
@@ -216,7 +216,7 @@ def update_diehard_players() -> None:
         seasons_done += 1
         print(seasons_done)
 
-    with open("diehard_players.json", "w") as file:
+    with open(os.path.join('Datasets', 'diehard_players.json'), "w") as file:
         json.dump(diehard_player_pool, file)
 
 

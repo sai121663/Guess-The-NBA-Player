@@ -91,14 +91,16 @@ def get_difficulty() -> str:
     screen.blit(screen_text, (100, 50))
 
     # Displaying images of MJ and a random NBA player
-    casual_player_img = pygame.image.load("casual_player_img.png").convert()
+    casual_player_img = pygame.image.load(os.path.join("Images", "casual_player_img.png")).convert()
     screen.blit(casual_player_img, (100, 150))
-    diehard_player_img = pygame.image.load("diehard_player_img.jpg").convert()
+
+    diehard_player_img = pygame.image.load(os.path.join("Images", "diehard_player_img.jpg")).convert()
     screen.blit(diehard_player_img, (500, 150))
 
     # Creating "CASUAL" and "DIEHARD" labels
     casual_label = fonts["big_font"].render("CASUAL", True, colours['BLACK'], (255, 255, 255))
     screen.blit(casual_label, (175, 400))
+
     diehard_label = fonts["big_font"].render("DIEHARD", True, colours['BLACK'], (255, 255, 255))
     screen.blit(diehard_label, (575, 400))
 
@@ -205,10 +207,10 @@ def update_points(is_prev_correct: bool, difficulty: str, points: int) -> int:
     """Update point total based on whether their answer was correct/wrong."""
 
     # convert_alpha() removes the white background & makes the image transparent
-    up_arrow_img = pygame.image.load("green_arrow.png").convert_alpha()
+    up_arrow_img = pygame.image.load(os.path.join("Images", "green_arrow.png")).convert_alpha()
     scaled_up_arrow = pygame.transform.smoothscale(up_arrow_img, (15, 15))
 
-    down_arrow_img = pygame.image.load("red_arrow.png").convert_alpha()
+    down_arrow_img = pygame.image.load(os.path.join("Images", "red_arrow.png")).convert_alpha()
     scaled_down_arrow = pygame.transform.smoothscale(down_arrow_img, (15, 15))
 
     if is_prev_correct:
@@ -287,14 +289,14 @@ def draw_music_icon(music_playing: bool) -> None:
 
         music_channel.set_volume(1.0)
 
-        display_scaled_image("simpson_vibing.png", (60, 60), (810, 420))
+        display_scaled_image(os.path.join("Images", "simpson_vibing.png"), (60, 60), (810, 420))
 
     else:
 
         # Muting the volume
         music_channel.set_volume(0.0)
 
-        display_scaled_image("simpson_bored.png", (60, 60), (810, 420))
+        display_scaled_image(os.path.join("Images", "simpson_bored.png"), (60, 60), (810, 420))
 
 
     pygame.display.update()
@@ -376,10 +378,10 @@ def intro_screen() -> None:
     screen.blit(message_1, (50, 190))
 
     # Image of "music on" icon
-    display_scaled_image("simpson_vibing.png", (60, 60), (225, 175))
+    display_scaled_image(os.path.join("Images", "simpson_vibing.png"), (60, 60), (225, 175))
 
     # Image of "music off" icon
-    display_scaled_image("simpson_bored.png", (60, 60), (340, 175))
+    display_scaled_image(os.path.join("Images", "simpson_bored.png"), (60, 60), (340, 175))
 
     # Message 2: Points gained/lost for each question
     message_2 = fonts['small_font'].render("        for \"CASUAL\" mode,          for \"DIEHARD\","
@@ -479,6 +481,7 @@ mode = get_difficulty()
 
 # Fetch the first NBAPlayer object
 player, choices, music_on = fetch_next_player(mode, music_on)
+display_points(player_points)
 
 # Game loop
 running = True
