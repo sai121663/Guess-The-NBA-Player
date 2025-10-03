@@ -413,6 +413,7 @@ def intro_screen() -> None:
                 if event.key == pygame.K_RETURN:
                     return
 
+
 def draw_quit_button() -> None:
     """Draw the quit button."""
 

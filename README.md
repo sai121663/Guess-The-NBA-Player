@@ -4,4 +4,3 @@ Go to Backend.py -> change **update_casual_players()** and/or **update_diehard_p
 
 > The new dictionary file(s) will be stored under Datasets -> casual_players.json or diehard_players.json
 
-.
