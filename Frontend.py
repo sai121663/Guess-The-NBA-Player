@@ -84,7 +84,7 @@ def get_difficulty() -> str:
     """Display the screen that allows the player to choose between a CASUAL and DIEHARD gameplay mode"""
 
     # Adds a background image of basketballs
-    display_scaled_image(os.path.join("Backgrounds", "basketballs.jpg"), (900, 500), (0, 0))
+    display_scaled_image(os.path.join("Images", "Backgrounds", "basketballs.jpg"), (900, 500), (0, 0))
 
     # The last parameter creates a WHITE background for the text
     screen_text = fonts["title_font"].render("PICK A MODE:", True, colours['BLACK'], (255, 255, 255))
@@ -124,13 +124,13 @@ def check_correct_ans(correct_ans: str, user_ans: str, nba_images: tuple[list, l
     """Display whether the user's answer is CORRECT or WRONG."""
 
     if correct_ans == user_ans:
-        display_scaled_image(os.path.join("Backgrounds", "basketball_net.jpg"), (900, 500), (0, 0))
+        display_scaled_image(os.path.join("Images", "Backgrounds", "basketball_net.jpg"), (900, 500), (0, 0))
         is_correct = True
         display_message = fonts['big_font'].render("CORRECT!", True, colours['GREEN'], (255, 255, 0))
         display_nba_moment(nba_images[0])   # nba_images is a tuple of (clutch_images, choke_images)  # audio_calls is a tuple of (good calls, bad calls)
 
     else:
-        display_scaled_image(os.path.join("Backgrounds", "man_disappointed.jpg"), (900, 500), (0, 0))
+        display_scaled_image(os.path.join("Images", "Backgrounds", "man_disappointed.jpg"), (900, 500), (0, 0))
         is_correct = False
         display_message = fonts['big_font'].render("WRONG!", True, colours['RED'], (255, 255, 0))
         display_nba_moment(nba_images[1])
@@ -174,8 +174,8 @@ def load_clutch_images() -> list:
 
     # Traverses through "Clutch Moments" folder and creates a list of valid file paths
     # e.g. ["Clutch Moments/jordan_1998.jpg", "Clutch Moments/kawhi_2019.jpg"]
-    for filename in os.listdir("Clutch Moments"):
-        img_path = os.path.join("Clutch Moments", filename)
+    for filename in os.listdir(os.path.join("Images", "Clutch Moments")):
+        img_path = os.path.join("Images", "Clutch Moments", filename)
         clutch_moments.append(img_path)
 
     return clutch_moments
@@ -186,8 +186,8 @@ def load_choke_images() -> list:
 
     choke_moments = []
 
-    for filename in os.listdir("Choke Moments"):
-        img_path = os.path.join("Choke Moments", filename)
+    for filename in os.listdir(os.path.join("Images", "Choke Moments")):
+        img_path = os.path.join("Images", "Choke Moments", filename)
         choke_moments.append(img_path)
 
     return choke_moments
@@ -251,7 +251,7 @@ def fetch_next_player(difficulty: str, music_playing: bool) -> tuple:
 
     # Uploading a background image
     screen.fill(colours['BLACK'])
-    display_scaled_image(os.path.join("Backgrounds", "dark_background.jpg"), (900, 500), (0, 0))
+    display_scaled_image(os.path.join("Images", "Backgrounds", "dark_background.jpg"), (900, 500), (0, 0))
 
     for event in pygame.event.get():
 
