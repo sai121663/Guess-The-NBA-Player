@@ -30,7 +30,7 @@ player_points = 0
 music_on = True
 
 # Load background theme music
-background_music = pygame.mixer.Sound("NBA on NBC Theme.mp3")
+background_music = pygame.mixer.Sound(os.path.join("Audio", "NBA on NBC Theme.mp3"))
 music_channel = pygame.mixer.Channel(0)     # Creates a channel for the background score to be played (able to pause/lower volume)
 
 
@@ -44,7 +44,7 @@ def end_program() -> None:
 def display_player_image() -> None:
     """Display the current's player's headshot."""
 
-    player_img = pygame.image.load("curr_player.jpg").convert()
+    player_img = pygame.image.load(os.path.join("Images", "curr_player.jpg")).convert()
     screen.blit(player_img, (50, 125))
 
     pygame.display.update()
@@ -314,14 +314,18 @@ def load_announcer_calls() -> Optional[tuple]:
     good_calls = []
     bad_calls = []
 
-    # Traversing through the subfolders in "Announcer Audio" folder
-    for file in os.listdir("Announcer Audio"):
+    # Traversing through the subfolders in "Audio" folder
+    for file in os.listdir("Audio"):
+
+        # Only traverse through good/bad announcer calls
+        if file not in {"Good", "Bad"}:
+            continue
 
         # Traversing through the folders in each of the subfolders
-        for filename in os.listdir(os.path.join("Announcer Audio", file)):
+        for filename in os.listdir(os.path.join("Audio", file)):
 
-            # Creating a valid filepath (e.g. "Announcer Audio/Good/Bang.mp3")
-            filepath = os.path.join("Announcer Audio", file, filename)
+            # Creating a valid filepath (e.g. "Audio/Good/Bang.mp3")
+            filepath = os.path.join("Audio", file, filename)
 
             if file == "Good":
                 good_calls.append(filepath)
@@ -469,6 +473,8 @@ def switch_mode(game_mode: str) -> str:
         game_mode = "casual"
 
     return game_mode
+
+
 
 # Loading images (tuple of (clutch images, choke images))
 images = load_clutch_images(), load_choke_images()

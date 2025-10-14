@@ -154,11 +154,11 @@ def download_headshot(player_id: int) -> bool:
         return False
 
     # If there is an image already named 'curr_player' in the file, delete it
-    if os.path.exists('curr_player.jpg'):
-        os.remove('curr_player.jpg')
+    if os.path.exists(os.path.join("Images", "curr_player.jpg")):
+        os.remove(os.path.join("Images", "curr_player.jpg"))
 
     # Converts the data into an image named "curr_player.jpg"
-    with open('curr_player.jpg', 'wb') as image:
+    with open(os.path.join("Images", "curr_player.jpg"), 'wb') as image:
         image.write(response.content)
 
     return True
