@@ -8,7 +8,7 @@ Download _Game.exe_ and start playing!
 1. Open _Backend.py_
 2. Change _update_casual_players()_ and/or _update_diehard_players()_
 
-> The new dictionary file(s) will be stored under Datasets -> casual_players.json or diehard_players.json
+> The new dictionary file(s) will be stored under _Datasets_ -> _casual_players.json_ or _diehard_players.json_
 
 
 ### How to rebuild .exe file? 
@@ -16,5 +16,6 @@ Download _Game.exe_ and start playing!
 Run 'pyinstaller Frontend.spec' in the terminal 
 
 > Only works if the three main folders ('Audio', 'Images', 'Datasets') aren't changed 
+
 
 
