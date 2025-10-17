@@ -4,6 +4,7 @@ import pygame
 import sys
 from typing import Optional
 from Backend import get_player, get_options
+from Installer import get_file_path
 import os
 import random
 
@@ -30,7 +31,7 @@ player_points = 0
 music_on = True
 
 # Load background theme music
-background_music = pygame.mixer.Sound(os.path.join("Audio", "NBA on NBC Theme.mp3"))
+background_music = pygame.mixer.Sound(get_file_path(os.path.join("Audio", "NBA on NBC Theme.mp3")))
 music_channel = pygame.mixer.Channel(0)     # Creates a channel for the background score to be played (able to pause/lower volume)
 
 
@@ -44,7 +45,7 @@ def end_program() -> None:
 def display_player_image() -> None:
     """Display the current's player's headshot."""
 
-    player_img = pygame.image.load(os.path.join("Images", "curr_player.jpg")).convert()
+    player_img = pygame.image.load(get_file_path(os.path.join("Images", "curr_player.jpg"))).convert()
     screen.blit(player_img, (50, 125))
 
     pygame.display.update()
@@ -84,17 +85,17 @@ def get_difficulty() -> str:
     """Display the screen that allows the player to choose between a CASUAL and DIEHARD gameplay mode"""
 
     # Adds a background image of basketballs
-    display_scaled_image(os.path.join("Images", "Backgrounds", "basketballs.jpg"), (900, 500), (0, 0))
+    display_scaled_image(get_file_path(os.path.join("Images", "Backgrounds", "basketballs.jpg")), (900, 500), (0, 0))
 
     # The last parameter creates a WHITE background for the text
     screen_text = fonts["title_font"].render("PICK A MODE:", True, colours['BLACK'], (255, 255, 255))
     screen.blit(screen_text, (100, 50))
 
     # Displaying images of MJ and a random NBA player
-    casual_player_img = pygame.image.load(os.path.join("Images", "casual_player_img.png")).convert()
+    casual_player_img = pygame.image.load(get_file_path(os.path.join("Images", "casual_player_img.png"))).convert()
     screen.blit(casual_player_img, (100, 150))
 
-    diehard_player_img = pygame.image.load(os.path.join("Images", "diehard_player_img.jpg")).convert()
+    diehard_player_img = pygame.image.load(get_file_path(os.path.join("Images", "diehard_player_img.jpg"))).convert()
     screen.blit(diehard_player_img, (500, 150))
 
     # Creating "CASUAL" and "DIEHARD" labels
@@ -124,13 +125,13 @@ def check_correct_ans(correct_ans: str, user_ans: str, nba_images: tuple[list, l
     """Display whether the user's answer is CORRECT or WRONG."""
 
     if correct_ans == user_ans:
-        display_scaled_image(os.path.join("Images", "Backgrounds", "basketball_net.jpg"), (900, 500), (0, 0))
+        display_scaled_image(get_file_path(os.path.join("Images", "Backgrounds", "basketball_net.jpg")), (900, 500), (0, 0))
         is_correct = True
         display_message = fonts['big_font'].render("CORRECT!", True, colours['GREEN'], (255, 255, 0))
         display_nba_moment(nba_images[0])   # nba_images is a tuple of (clutch_images, choke_images)  # audio_calls is a tuple of (good calls, bad calls)
 
     else:
-        display_scaled_image(os.path.join("Images", "Backgrounds", "man_disappointed.jpg"), (900, 500), (0, 0))
+        display_scaled_image(get_file_path(os.path.join("Images", "Backgrounds", "man_disappointed.jpg")), (900, 500), (0, 0))
         is_correct = False
         display_message = fonts['big_font'].render("WRONG!", True, colours['RED'], (255, 255, 0))
         display_nba_moment(nba_images[1])
@@ -174,8 +175,8 @@ def load_clutch_images() -> list:
 
     # Traverses through "Clutch Moments" folder and creates a list of valid file paths
     # e.g. ["Clutch Moments/jordan_1998.jpg", "Clutch Moments/kawhi_2019.jpg"]
-    for filename in os.listdir(os.path.join("Images", "Clutch Moments")):
-        img_path = os.path.join("Images", "Clutch Moments", filename)
+    for filename in os.listdir(get_file_path(os.path.join("Images", "Clutch Moments"))):
+        img_path = get_file_path(os.path.join("Images", "Clutch Moments", filename))
         clutch_moments.append(img_path)
 
     return clutch_moments
@@ -186,8 +187,8 @@ def load_choke_images() -> list:
 
     choke_moments = []
 
-    for filename in os.listdir(os.path.join("Images", "Choke Moments")):
-        img_path = os.path.join("Images", "Choke Moments", filename)
+    for filename in os.listdir(get_file_path(os.path.join("Images", "Choke Moments"))):
+        img_path = get_file_path(os.path.join("Images", "Choke Moments", filename))
         choke_moments.append(img_path)
 
     return choke_moments
@@ -207,10 +208,10 @@ def update_points(is_prev_correct: bool, difficulty: str, points: int) -> int:
     """Update point total based on whether their answer was correct/wrong."""
 
     # convert_alpha() removes the white background & makes the image transparent
-    up_arrow_img = pygame.image.load(os.path.join("Images", "green_arrow.png")).convert_alpha()
+    up_arrow_img = pygame.image.load(get_file_path(os.path.join("Images", "green_arrow.png"))).convert_alpha()
     scaled_up_arrow = pygame.transform.smoothscale(up_arrow_img, (15, 15))
 
-    down_arrow_img = pygame.image.load(os.path.join("Images", "red_arrow.png")).convert_alpha()
+    down_arrow_img = pygame.image.load(get_file_path(os.path.join("Images", "red_arrow.png"))).convert_alpha()
     scaled_down_arrow = pygame.transform.smoothscale(down_arrow_img, (15, 15))
 
     if is_prev_correct:
@@ -251,7 +252,7 @@ def fetch_next_player(difficulty: str, music_playing: bool) -> tuple:
 
     # Uploading a background image
     screen.fill(colours['BLACK'])
-    display_scaled_image(os.path.join("Images", "Backgrounds", "dark_background.jpg"), (900, 500), (0, 0))
+    display_scaled_image(get_file_path(os.path.join("Images", "Backgrounds", "dark_background.jpg")), (900, 500), (0, 0))
 
     for event in pygame.event.get():
 
@@ -289,14 +290,14 @@ def draw_music_icon(music_playing: bool) -> None:
 
         music_channel.set_volume(1.0)
 
-        display_scaled_image(os.path.join("Images", "simpson_vibing.png"), (60, 60), (810, 420))
+        display_scaled_image(get_file_path(os.path.join("Images", "simpson_vibing.png")), (60, 60), (810, 420))
 
     else:
 
         # Muting the volume
         music_channel.set_volume(0.0)
 
-        display_scaled_image(os.path.join("Images", "simpson_bored.png"), (60, 60), (810, 420))
+        display_scaled_image(get_file_path(os.path.join("Images", "simpson_bored.png")), (60, 60), (810, 420))
 
 
     pygame.display.update()
@@ -315,17 +316,17 @@ def load_announcer_calls() -> Optional[tuple]:
     bad_calls = []
 
     # Traversing through the subfolders in "Audio" folder
-    for file in os.listdir("Audio"):
+    for file in os.listdir(get_file_path("Audio")):
 
         # Only traverse through good/bad announcer calls
         if file not in {"Good", "Bad"}:
             continue
 
         # Traversing through the folders in each of the subfolders
-        for filename in os.listdir(os.path.join("Audio", file)):
+        for filename in os.listdir(get_file_path(os.path.join("Audio", file))):
 
             # Creating a valid filepath (e.g. "Audio/Good/Bang.mp3")
-            filepath = os.path.join("Audio", file, filename)
+            filepath = get_file_path(os.path.join("Audio", file, filename))
 
             if file == "Good":
                 good_calls.append(filepath)
@@ -382,10 +383,10 @@ def intro_screen() -> None:
     screen.blit(message_1, (50, 190))
 
     # Image of "music on" icon
-    display_scaled_image(os.path.join("Images", "simpson_vibing.png"), (60, 60), (225, 175))
+    display_scaled_image(get_file_path(os.path.join("Images", "simpson_vibing.png")), (60, 60), (225, 175))
 
     # Image of "music off" icon
-    display_scaled_image(os.path.join("Images", "simpson_bored.png"), (60, 60), (340, 175))
+    display_scaled_image(get_file_path(os.path.join("Images", "simpson_bored.png")), (60, 60), (340, 175))
 
     # Message 2: Points gained/lost for each question
     message_2 = fonts['small_font'].render("        for \"CASUAL\" mode,          for \"DIEHARD\","
@@ -445,7 +446,7 @@ def quit_game() -> None:
 
     screen.blit(points_msg, (50, 50))
 
-    display_scaled_image(os.path.join("Images", "mamba_out.jpg"), (480, 334), (200, 125))
+    display_scaled_image(get_file_path(os.path.join("Images", "mamba_out.jpg")), (480, 334), (200, 125))
 
     pygame.display.update()
     pygame.time.wait(3000)
@@ -473,7 +474,6 @@ def switch_mode(game_mode: str) -> str:
         game_mode = "casual"
 
     return game_mode
-
 
 
 # Loading images (tuple of (clutch images, choke images))
@@ -544,11 +544,4 @@ while running:
 
 # End the program
 end_program()
-
-
-# Instructions:
-# ------------------------------------
-# - Create a CLUE button:
-#         - Either the player's NICKNAME (if it exists) or the year they RETIRED
-
 

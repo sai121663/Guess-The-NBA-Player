@@ -1,12 +1,14 @@
 """This file will contain the backend of the 'Guess the Player' game."""
 
 import requests
-import os
 import random
 from typing import Optional
 from nba_api.stats.static import players
 from nba_api.stats.endpoints import playercareerstats, leagueleaders
 import json
+import os
+from Installer import get_file_path
+
 
 # Public variables
 # Generates a list[dict] of active and all players respectively
@@ -14,11 +16,12 @@ all_players = players.get_players()
 invalid_ids = set()     # Set of player IDs that return an invalid headshot
 used_players = set()    # Player IDs that have already been used
 
+
 # Loading the JSON files containing player data
-with open(os.path.join('Datasets', 'casual_players.json'), 'r') as file1:
+with open(get_file_path(os.path.join('Datasets', 'casual_players.json')), 'r') as file1:
     casual_data = json.load(file1)
 
-with open(os.path.join('Datasets', 'diehard_players.json'), 'r') as file2:
+with open(get_file_path(os.path.join('Datasets', 'diehard_players.json')), 'r') as file2:
     diehard_data = json.load(file2)
 
 
@@ -154,11 +157,11 @@ def download_headshot(player_id: int) -> bool:
         return False
 
     # If there is an image already named 'curr_player' in the file, delete it
-    if os.path.exists(os.path.join("Images", "curr_player.jpg")):
-        os.remove(os.path.join("Images", "curr_player.jpg"))
+    if os.path.exists(get_file_path(os.path.join("Images", "curr_player.jpg"))):
+        os.remove(get_file_path(os.path.join("Images", "curr_player.jpg")))
 
     # Converts the data into an image named "curr_player.jpg"
-    with open(os.path.join("Images", "curr_player.jpg"), 'wb') as image:
+    with open(get_file_path(os.path.join("Images", "curr_player.jpg")), 'wb') as image:
         image.write(response.content)
 
     return True
@@ -187,7 +190,7 @@ def update_casual_players() -> None:
 
         casual_player_pool.extend(top_scorers_by_dict)
 
-    with open(os.path.join('Datasets', 'casual_players.json'), "w") as file:
+    with open(get_file_path(os.path.join('Datasets', 'casual_players.json')), "w") as file:
         json.dump(casual_player_pool, file)
 
 
@@ -216,7 +219,7 @@ def update_diehard_players() -> None:
         seasons_done += 1
         print(seasons_done)
 
-    with open(os.path.join('Datasets', 'diehard_players.json'), "w") as file:
+    with open(get_file_path(os.path.join('Datasets', 'diehard_players.json')), "w") as file:
         json.dump(diehard_player_pool, file)
 
 
