@@ -1,6 +1,6 @@
 ### For non-programmers...
 
-Download Game.exe and start playing!
+Download _Game.exe_ and start playing!
 
 ### How to update player data? 
 
@@ -14,3 +14,4 @@ Go to Backend.py -> change **update_casual_players()** and/or **update_diehard_p
 Run 'pyinstaller Frontend.spec' in the terminal 
 
 > Only works if the three main folders ('Audio', 'Images', 'Datasets') aren't changed 
+
