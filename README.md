@@ -2,9 +2,11 @@
 
 Download _Game.exe_ and start playing!
 
+
 ### How to update player data? 
 
-Go to Backend.py -> change **update_casual_players()** and/or **update_diehard_players()**
+1. Open _Backend.py_
+2. Change _update_casual_players()_ and/or _update_diehard_players()_
 
 > The new dictionary file(s) will be stored under Datasets -> casual_players.json or diehard_players.json
 
@@ -14,4 +16,5 @@ Go to Backend.py -> change **update_casual_players()** and/or **update_diehard_p
 Run 'pyinstaller Frontend.spec' in the terminal 
 
 > Only works if the three main folders ('Audio', 'Images', 'Datasets') aren't changed 
+
 
